@@ -5,12 +5,7 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Allow requests only from specified origins
-const corsWhitelist = {
-    origin: 'http://example.com' 
-};
-
-// Enable CORS with only whitelisted domains -> cors(corsWhitelist)
+// Allow requests from all origins
 app.use(cors());
 
 // Serve static files from the 'static' directory
@@ -33,5 +28,5 @@ app.get('/roll-dice', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Server started at http://localhost:${port}`);
+    console.log(`Server started on port ${port}`);
 });
