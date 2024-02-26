@@ -16,7 +16,6 @@ app.get('/roll-dice', (req, res) => {
     const result1 = Math.floor(Math.random() * 6) + 1;
     const result2 = Math.floor(Math.random() * 6) + 1;
     const sum = result1 + result2;
-    console.log("API called remotely. " + "(Rolled " + sum + ")")
 
     // Send JSON response with dice roll results
     res.json({
