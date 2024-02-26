@@ -25,6 +25,21 @@ app.get('/roll-dice', (req, res) => {
     });
 });
 
+// custom 404 page
+app.use((req, res) => {
+    res.type('text/plain')
+    res.status(404)
+    res.send('404 - Not Found')
+  })
+  
+  // custom 500 page
+  app.use((err, req, res, next) => {
+    console.error(err.message)
+    res.type('text/plain')
+    res.status(500)
+    res.send('500 - Server Error')
+  })
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
