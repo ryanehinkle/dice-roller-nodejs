@@ -1,48 +1,20 @@
-const express = require('express'); // Import Express
-const cors = require('cors'); // Import CORS
-const path = require('path'); // Import file paths
+// Import the express module
+const express = require('express');
+const path = require('path');
 
-// Create an Express application
+// Create an instance of an Express application
 const app = express();
-const port = process.env.PORT || 3000; // Set the port
+const PORT = 3000;
 
-// Allow requests from all origins
-app.use(cors());
-
-// Use static files from the 'static' folder
+// Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'static')));
 
-// Route to roll dice
-app.get('/roll-dice', (req, res) => {
-    // Generate random numbers for two dice rolls
-    const result1 = Math.floor(Math.random() * 6) + 1;
-    const result2 = Math.floor(Math.random() * 6) + 1;
-    const sum = result1 + result2; // Calculate the sum
-
-    // Send JSON response with dice roll result
-    res.json({
-        result1: result1,
-        result2: result2,
-        sum: sum
-    });
+// Define the /prof-list route to return a simple JSON response
+app.get('/prof-list', (req, res) => {
+  res.json({ message: 'test' });
 });
 
-// Custom 404 page
-app.use((req, res) => {
-    res.type('text/plain')
-    res.status(404)
-    res.send('404 - Not Found')
-})
-
-// Custom 500 page
-app.use((err, req, res, next) => {
-    console.error(err.message)
-    res.type('text/plain')
-    res.status(500)
-    res.send('500 - Server Error')
-})
-
-// Start the server
-app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
+// Start the server and listen on the specified port
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
